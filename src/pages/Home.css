@@ -63,13 +63,3 @@
     background-color: black;
     color: #ffc107;
 }
-
-#alertBox {
-    position: absolute;
-    top: 100px;
-    left: 100px;
-    border: solid 1px #9627CA;
-    background-color: #ffc107;
-    padding: 50px;
-    visibility: hidden;
-}

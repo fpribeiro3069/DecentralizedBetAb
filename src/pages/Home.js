@@ -11,9 +11,7 @@ const Home = () => {
           <a className="navbar-item-main" >DecentralizedAb</a>
           <ConnectButton className="navbar-item" />
       </div>
-      <body className="body">
-        <MatchList />
-      </body>
+      <MatchList />
     </div>
   )
 }

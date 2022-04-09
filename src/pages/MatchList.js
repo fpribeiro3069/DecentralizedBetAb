@@ -1,18 +1,21 @@
 import React, { useState, useEffect } from 'react';
-import MatchCard from '../components/MatchCard';
-import getUpcomingMatches from '../consumers/sportsApiConsumer';
+import MatchCard from '../components/MatchCard.js';
+import BetModal from '../components/BetModal.js';
+import getUpcomingMatches from '../consumers/sportsApiConsumer.js';
 import './MatchList.css';
 
-const onClick = (team) => {
-    let value = prompt('How much do you want to bet on ' + team + '?');
+const onClick = (setBetting) => {
+    // FIXME: This is truly garbage
+    setBetting(true);
+    // let convertedMatchId = matchId.split('').filter(c => !isNaN(c)).join('').substring(0, 10);
 
-    console.log(value);
-
-    // TODO: RIBEIRO FALTA AQUI METER O DINHEIRO NA APOSTA
 }
 
 const MatchList = (props) => {
     const [matches, setMatches] = useState([]);
+    const [betting, setBetting] = useState(false);
+    const [activeMatch, setActiveMatch] = useState(null);
+    const [activeTeam, setActiveTeam] = useState(null);
 
     useEffect(() => {
         getUpcomingMatches(setMatches)
@@ -22,12 +25,14 @@ const MatchList = (props) => {
     }, []);
 
     return (
-        <div className='list'>
-            {matches.map((match) => {
-                console.log(match)
-                return <MatchCard key={match.id} onClick={onClick} match={match} />
-            })}
-        </div>
+        <>
+            { betting && <BetModal activeMatch={activeMatch} activeTeam={activeTeam} /> }
+            <div className='list'>
+                {matches.length > 0 ? matches.map((match) =>
+                    <MatchCard key={match.id} setBetting={setBetting} setActiveMatch={setActiveMatch} setActiveTeam={setActiveTeam} match={match} />
+                ) : <p>Loading matches...</p>}
+            </div>
+        </>
     )
 }
 
