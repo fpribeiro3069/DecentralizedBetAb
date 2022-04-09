@@ -3,10 +3,11 @@ import MatchCard from '../components/MatchCard';
 import getUpcomingMatches from '../consumers/sportsApiConsumer';
 import './MatchList.css';
 
-const onClick = (team) => {
-    let value = prompt('How much do you want to bet on ' + team + '?');
+const onClick = (matchId, team) => {
+    // FIXME: This is truly garbage
+    let convertedMatchId = matchId.split('').filter(c => !isNaN(c)).join('').substring(0, 10);
 
-    console.log(value);
+    let value = prompt('How much do you want to bet on ' + team + '?');
 
     // TODO: RIBEIRO FALTA AQUI METER O DINHEIRO NA APOSTA
 }
@@ -23,10 +24,9 @@ const MatchList = (props) => {
 
     return (
         <div className='list'>
-            {matches.map((match) => {
-                console.log(match)
-                return <MatchCard key={match.id} onClick={onClick} match={match} />
-            })}
+            {matches.length > 0 ? matches.map((match) =>
+                <MatchCard key={match.id} onClick={onClick} match={match} />
+            ) : <p>Loading matches...</p>}
         </div>
     )
 }
