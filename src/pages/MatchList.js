@@ -4,18 +4,12 @@ import BetModal from '../components/BetModal.js';
 import getUpcomingMatches from '../consumers/sportsApiConsumer.js';
 import './MatchList.css';
 
-const onClick = (setBetting) => {
-    // FIXME: This is truly garbage
-    setBetting(true);
-    // let convertedMatchId = matchId.split('').filter(c => !isNaN(c)).join('').substring(0, 10);
-
-}
-
 const MatchList = (props) => {
     const [matches, setMatches] = useState([]);
     const [betting, setBetting] = useState(false);
     const [activeMatch, setActiveMatch] = useState(null);
     const [activeTeam, setActiveTeam] = useState(null);
+    const [activeTeamId, setActiveTeamId] = useState(0);
 
     useEffect(() => {
         getUpcomingMatches(setMatches)
@@ -26,10 +20,10 @@ const MatchList = (props) => {
 
     return (
         <>
-            { betting && <BetModal activeMatch={activeMatch} activeTeam={activeTeam} /> }
+            { betting && <BetModal activeMatch={activeMatch} activeTeam={activeTeam} activeTeamId={activeTeamId} /> }
             <div className='list'>
                 {matches.length > 0 ? matches.map((match) =>
-                    <MatchCard key={match.id} setBetting={setBetting} setActiveMatch={setActiveMatch} setActiveTeam={setActiveTeam} match={match} />
+                    <MatchCard key={match.id} setBetting={setBetting} setActiveMatch={setActiveMatch} setActiveTeam={setActiveTeam} setActiveTeamId={setActiveTeamId} match={match} />
                 ) : <p>Loading matches...</p>}
             </div>
         </>
