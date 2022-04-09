@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
-import './BetModal.css';
+import {Modal} from 'react-bootstrap'
+import Button from 'react-bootstrap/Button'
 
 const onBet = (value, matchId, team) => {
     console.log(value);
     // TODO: RIBEIRO FALTA AQUI METER O DINHEIRO NA APOSTA
 }
 
-const Modal = ({activeMatch, activeTeam}) => {
+const BetModal = ({activeMatch, activeTeam}) => {
     const [currValue, setCurrValue] = useState('');
     
     return (
@@ -14,9 +15,9 @@ const Modal = ({activeMatch, activeTeam}) => {
         <div className="modal">
             <span>How much do you want to bet on {activeTeam}?</span>
             <input type="text" placeholder="...eth" onChange={(e) => setCurrValue(e.target.value)}></input>
-            <button className="button-primary" onClick={() => onBet(currValue, activeMatch, activeTeam)}>BET!</button>
+            <Button className="button-primary" onClick={() => onBet(currValue, activeMatch, activeTeam)}>BET!</Button>
         </div>
     );
 }
 
-export default Modal;
+export default BetModal;

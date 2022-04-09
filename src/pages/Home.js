@@ -2,17 +2,20 @@ import React from 'react';
 import "./Home.css";
 import { ConnectButton } from 'web3uikit';
 import MatchList from './MatchList';
+import {Navbar, Nav, Button} from 'react-bootstrap';
 
 const Home = () => {
 
   return(
-    <div className="body">
-      <div className="navbar">
-          <a className="navbar-item-main" >DecentralizedAb</a>
-          <ConnectButton className="navbar-item" />
-      </div>
+    <>
+      <Navbar className='navbar' bg="primary">
+        <Navbar.Brand href="#home">DecentralizedAb</Navbar.Brand>
+        <div class="container-button">
+          <ConnectButton className='connect' />
+        </div>
+      </Navbar>
       <MatchList />
-    </div>
+    </>
   )
 }
 
