@@ -4,6 +4,8 @@ import './BetModal.css';
 
 const onBet = (value, matchId, teamId) => {
     console.log(value);
+    matchId = matchId.split('').filter((c) => !isNaN(c)).join('');
+    console.log(matchId);
     placeBet(value, teamId, matchId);
 }
 
