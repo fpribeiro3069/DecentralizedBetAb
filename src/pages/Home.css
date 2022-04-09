@@ -1,7 +1,12 @@
 .navbar {
-    background-color: #9627CA;
-    overflow: hidden;
-    padding: 1rem;
+    padding: 10px;
+    justify-content: space-between !important;
+}
+
+.container-button {
+    width: fit-content;
+    height: fit-content;
+    float: right;
 }
 
 .navbar-item-main {
