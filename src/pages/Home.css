@@ -1,0 +1,75 @@
+.navbar {
+    background-color: #9627CA;
+    overflow: hidden;
+    padding: 1rem;
+}
+
+.navbar-item-main {
+    border-radius: 15px;
+    float: left;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+.navbar-item {
+    border-radius: 15px;
+    float: right;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+.navbar-item-main:hover,
+.navbar-item:hover {
+    background-color: #ffc107;
+    color: #9627CA;
+}
+
+.navbar-item-main:active,
+.navbar-item:active {
+    background-color: #ffc107;
+    color: #9627CA;
+}
+
+.body {
+    height: 100px;
+    background-color: black;
+    color: #ffc107;
+}
+
+.button-primary {
+    border-radius: 10%;
+    padding: 14px 16px;
+    display: inline-block;
+    white-space: nowrap;
+    border-color: #ffc107;
+    border-width: thick;
+    background-color: #9627CA;
+    color: black;
+}
+
+.button-secondary {
+    border-width: thick;
+    border-radius: 10%;
+    padding: 14px 16px;
+    display: inline-block;
+    white-space: nowrap;
+    border-color: #9627CA;
+    background-color: black;
+    color: #ffc107;
+}
+
+#alertBox {
+    position: absolute;
+    top: 100px;
+    left: 100px;
+    border: solid 1px #9627CA;
+    background-color: #ffc107;
+    padding: 50px;
+    visibility: hidden;
+}
