@@ -1,7 +1,11 @@
 // SPDX-License-Identifier: MIT
 pragma solidity >0.4.99;
 
-contract Betting {
+import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/security/PullPayment.sol";
+
+contract Betting is PullPayment{
+
+  // test helper function to call asyncSend
    address payable public owner;
    
    struct Player {
@@ -50,25 +54,13 @@ contract Betting {
           events[eventId].totalBetsTwo += msg.value;
       }
     }
-    
-    function distributePrizes(uint16 teamWinner, uint256 eventId) public {
-      address payable[1000] memory winners;
-      
-      uint256 count = 0; 
+
+   function getMoney(uint256 eventId, uint16 teamWinner) public {
+      //calculate prizes
       uint256 LoserBet = 0; 
       uint256 WinnerBet = 0;
-      address add;
       uint256 bet;
-      address payable playerAddress;
     
-      for(uint256 i = 0; i < events[eventId].players.length; i++){
-         playerAddress = events[eventId].players[i];
-
-         if(events[eventId].playerInfo[playerAddress].teamSelected == teamWinner){
-            winners[count] = playerAddress;
-            count++;
-         }
-      }
     
       if ( teamWinner == 1){
          LoserBet = events[eventId].totalBetsTwo;
@@ -78,23 +70,24 @@ contract Betting {
           LoserBet = events[eventId].totalBetsOne;
           WinnerBet = events[eventId].totalBetsTwo;
       }
-    
-      for(uint256 j = 0; j < count; j++){
-         if(winners[j] != address(0))
-            add = winners[j];
-            bet = events[eventId].playerInfo[add].amountBet;
-            //Transfer the money to the user
-            winners[j].transfer(    (bet*(10000+(LoserBet*10000/WinnerBet)))/10000 );
+      if (WinnerBet== 0) {
+         WinnerBet = 1;
       }
-      
-      delete events[eventId].playerInfo[playerAddress];
-      delete events[eventId].players;
-      
-      LoserBet = 0;
-      WinnerBet = 0;
-      events[eventId].totalBetsOne = 0;
-      events[eventId].totalBetsTwo = 0;
-    }
+
+      if(events[eventId].playerInfo[msg.sender].teamSelected == teamWinner){
+         bet = events[eventId].playerInfo[msg.sender].amountBet;
+
+         uint256 amount = bet*(10000+(LoserBet*10000/WinnerBet))/10000;
+         _asyncTransfer(msg.sender, amount);
+         withdrawPayments(payable (msg.sender));
+         events[eventId].playerInfo[msg.sender].amountBet = 0;
+      }
+
+
+
+   
+   }
+
     function AmountOne(uint256 eventId) public view returns(uint256){
        return events[eventId].totalBetsOne;
     }
