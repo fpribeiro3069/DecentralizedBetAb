@@ -9,8 +9,8 @@ const Home = () => {
   return(
     <>
       <Navbar className='navbar' bg="primary">
-        <Navbar.Brand href="#home">DecentralizedAb</Navbar.Brand>
-        <div class="container-button">
+        <div href="#home" className='navbar-item'>Bet3</div>
+        <div className="container-button">
           <ConnectButton className='connect' />
         </div>
       </Navbar>

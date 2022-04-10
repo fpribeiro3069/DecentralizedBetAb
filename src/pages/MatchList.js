@@ -6,9 +6,10 @@ import { Modal } from 'react-bootstrap';
 import { placeBet } from '../wrapper.js';
 import './MatchList.css';
 
-const onBet = (value, matchId, teamId) => {
+const onBet = (value, matchId, teamId, setBetting) => {
     console.log(value);
     matchId = matchId.split('').filter((c) => !isNaN(c)).join('');
+    setBetting(false);
     console.log(matchId);
     placeBet(value, teamId, matchId);
 }
@@ -42,7 +43,7 @@ const MatchList = (props) => {
                     <Button variant="secondary" onClick={() => setBetting(false)}>
                         Close
                     </Button>
-                    <Button onClick={() => onBet(currValue, activeMatch, activeTeam, activeTeamId)}>BET!</Button>
+                    <Button onClick={() => onBet(currValue, activeMatch, activeTeamId, setBetting)}>BET!</Button>
                 </Modal.Footer>
             </Modal>
             {matches.length > 0 ? (

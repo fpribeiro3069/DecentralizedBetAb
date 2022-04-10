@@ -1,6 +1,6 @@
 .navbar {
-    padding: 10px;
     justify-content: space-between !important;
+    padding: 0 !important;
 }
 
 .container-button {
@@ -9,24 +9,19 @@
     float: right;
 }
 
-.navbar-item-main {
-    border-radius: 15px;
-    float: left;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-    font-size: 17px;
-}
 
 .navbar-item {
-    border-radius: 15px;
-    float: right;
-    color: white;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
     text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-    font-size: 17px;
+    padding-left: 4rem;
+    padding-right: 4rem;
+    height: 4rem;
+    font-size: xx-large;
+    background-color: darkblue !important;
+    color: white !important;
 }
 
 .navbar-item-main:hover,

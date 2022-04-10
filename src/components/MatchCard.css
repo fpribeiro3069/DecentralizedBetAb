@@ -1,14 +1,3 @@
-.card {
-    text-align: center;
-    align-items: center;
-    align-content: center;
-    display: inline;
-    border-radius: 2%;
-    padding: 1rem;
-    border-color: white;
-    border-width: 10px;
-}
-
 .text {
     margin-top: 15px;
     color: black;
@@ -16,5 +5,9 @@
 }
 
 .button-primary {
-    width: 200px !important;
+    width: 100%;
+}
+
+.cardBody {
+    width: 100%;
 }

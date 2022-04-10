@@ -13,8 +13,8 @@ const MatchCard = ({ match, setBetting, setActiveMatch, setActiveTeam, setActive
 
     return (
         <>
-            <Card className="shadow p-3 mb-5 bg-white rounded">
-                <Card.Body>
+            <Card className="shadow p-3 mb-5 bg-white rounded card">
+                <Card.Body className='cardBody'>
                     <Button size="lg" className="button-primary" onClick={() => { onClick(match.home_team, 1); } }>{match.home_team}</Button>
                         <Card.Text className="text"> vs </Card.Text>
                     <Button size="lg" className="button-primary"  onClick={() => { onClick(match.away_team, 2); }}>{match.away_team}</Button>
