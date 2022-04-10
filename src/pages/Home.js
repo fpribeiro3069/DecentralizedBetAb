@@ -1,7 +1,6 @@
 import React from 'react';
 import "./Home.css";
 import MatchList from './MatchList';
-import { ConnectButton } from 'web3uikit';
 import { Navbar } from 'react-bootstrap';
 import { Button, ConnectButton } from 'web3uikit';
 import { useWeb3ExecuteFunction, ErrorMessage } from "react-moralis";
